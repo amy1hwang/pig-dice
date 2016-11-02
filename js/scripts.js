@@ -15,29 +15,35 @@ Game.prototype.roll = function() {
 };
 
 Game.prototype.gamePlay = function() {
+  var score;
+  var name = this.pigGame[this.index].name;
 
   if(this.dieValue === 1){
     this.pigGame[this.index].currentScore = 0;
-    if (this.index === this.pigGame.length - 1) {
-      this.index = 0;
-    }
-    else{
-        this.index += 1;
-    }
-  }
-  else if(this.dieValue === 10){
-    this.pigGame[this.index].totalScore += this.pigGame[this.index].currentScore
-    this.pigGame[this.index].currentScore = 0;
+    score = this.pigGame[this.index].totalScore += this.pigGame[this.index].currentScore
     if (this.index === this.pigGame.length - 1) {
       this.index = 0;
     }
     else{
       this.index += 1;
     }
+    return name + "'s total score: "  + score;
+  }
+  else if(this.dieValue === 10){
+    score = this.pigGame[this.index].totalScore += this.pigGame[this.index].currentScore
+    this.pigGame[this.index].currentScore = 0;
+    if (this.index === this.pigGame.length - 1) {
+      this.index = 0;
+    }
+    else{
+      this.index += 1;
+    };
+    return name + "'s total score: "  + score;
   }
   else{
-    this.pigGame[this.index].currentScore += this.dieValue;
-  }
+    var current = this.pigGame[this.index].currentScore += this.dieValue;
+    return name + "'s current score: "  + current;
+  };
 };
 
 Game.prototype.gameCheck = function(){
@@ -61,7 +67,6 @@ $(document).ready(function() {
 
     newGame.pigGame.push(newPlayer);
     $("#player-entry").val("");
-    $(".show-player-name h4").append(name + " score:" + "<br>" + "<br>");
 
     event.preventDefault();
   });
@@ -70,28 +75,32 @@ $(document).ready(function() {
 
     newGame.dieValue = newGame.roll();
     var check = newGame.gameCheck();
-    console.log(check);
+    var output;
+
     if(check){
-      newGame.gamePlay();
+      output = newGame.gamePlay();
     }
     else{
       console.log("Winner")
     }
-
     $("#display h3").text(newGame.dieValue);
-    $(".current-player").text(newGame.pigGame.name)
+    $(".score-display").text(output);
+
     event.preventDefault();
   });
 
   $("form#hold").submit(function(event){
     newGame.dieValue = 10;
     var check = newGame.gameCheck();
+    var output;
     if(check){
-      newGame.gamePlay();
+      output = newGame.gamePlay();
     }
     else{
       console.log("Winner")
     }
+    $(".score-display").text(output);
+
     event.preventDefault();
   });
 })
