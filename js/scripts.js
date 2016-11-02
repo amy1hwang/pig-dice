@@ -48,7 +48,7 @@ Game.prototype.gamePlay = function() {
 
 Game.prototype.gameCheck = function(){
   for(var i = 0; i < this.pigGame.length; i++){
-    if(this.pigGame[i].totalScore >= 20){
+    if(this.pigGame[i].totalScore >= 100){
         return false;
     }
     else{
@@ -65,6 +65,8 @@ $(document).ready(function() {
     var name = $("#player-entry").val();
     var newPlayer = new Player(name);
 
+    $("img").fadeIn(3000);
+    $(".welcome-message").append("Welcome " + name + ". Are you ready to play?")
     newGame.pigGame.push(newPlayer);
     $("#player-entry").val("");
 
@@ -97,7 +99,7 @@ $(document).ready(function() {
       output = newGame.gamePlay();
     }
     else{
-      console.log("Winner")
+      return "Winner"
     }
     $(".score-display").text(output);
 

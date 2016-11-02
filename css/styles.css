@@ -1,5 +1,16 @@
 .container{
   margin-top: 50px;
+  font-family: 'Coiny', cursive;
+
+}
+
+.jumbotron {
+  background-color: #ffffff;
+}
+
+img.pig2 {
+  float: right;
+  width: 250px;
 }
 
 .row{
@@ -11,8 +22,17 @@ h1{
   text-align: center;
 }
 
-h4{
-  margin-top: 15px;
+img.deepeyes {
+  width: 300px;
+  display: none;
+}
+
+.welcome-message {
+  font-size: 20px;
+}
+
+label {
+  font-size: 25px;
 }
 
 #game {
