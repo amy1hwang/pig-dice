@@ -65,8 +65,9 @@ $(document).ready(function() {
     var name = $("#player-entry").val();
     var newPlayer = new Player(name);
 
-    $("img").fadeIn(3000);
-    $(".welcome-message").append("Welcome " + name + ". Are you ready to play?")
+    $(".welcome-message").text("Welcome " + name + ". Are you ready to play?")
+    $(".welcome").fadeIn(3000);
+    $(".welcome").fadeOut(1000);
     newGame.pigGame.push(newPlayer);
     $("#player-entry").val("");
 
@@ -86,6 +87,7 @@ $(document).ready(function() {
       console.log("Winner")
     }
     $("#display h3").text(newGame.dieValue);
+    $("img.headshot").show();
     $(".score-display").text(output);
 
     event.preventDefault();
@@ -101,6 +103,8 @@ $(document).ready(function() {
     else{
       return "Winner"
     }
+
+    $("img.headshot").show();
     $(".score-display").text(output);
 
     event.preventDefault();

@@ -23,7 +23,10 @@ h1{
 }
 
 img.deepeyes {
-  width: 300px;
+width: 300px;
+}
+
+.welcome {
   display: none;
 }
 
@@ -37,4 +40,9 @@ label {
 
 #game {
   float: right;
+}
+
+.headshot {
+  width: 100px;
+  display: none;
 }
