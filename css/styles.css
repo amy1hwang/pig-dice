@@ -11,6 +11,10 @@ h1{
   text-align: center;
 }
 
+h4{
+  margin-top: 15px;
+}
+
 #game {
   float: right;
 }
