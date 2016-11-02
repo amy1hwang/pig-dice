@@ -11,7 +11,7 @@ function Game(player){
 };
 
 Game.prototype.roll = function() {
-  return Math.floor(Math.random() * (7 - 1)) + 1;
+  return Math.floor(Math.random() * (7 - 1)) + 2;
 };
 
 Game.prototype.gamePlay = function() {
@@ -47,14 +47,14 @@ Game.prototype.gamePlay = function() {
 };
 
 Game.prototype.gameCheck = function(){
-  for(var i = 0; i < this.pigGame.length; i++){
-    if(this.pigGame[i].totalScore >= 100){
-        return false;
-    }
-    else{
-      return true;
-    }
+  //for(var i = 0; i < this.pigGame.length; i++){
+  if(this.pigGame[this.index].totalScore >= 20){
+      return false;
   }
+  else{
+    return true;
+    }
+  //}
 }
 
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
       console.log("Winner")
     }
     $("#display h3").text(newGame.dieValue);
-    $("img.headshot").show();
+    $("img.headshot").fadeIn(300);
     $(".score-display").text(output);
 
     event.preventDefault();
@@ -97,11 +97,12 @@ $(document).ready(function() {
     newGame.dieValue = 10;
     var check = newGame.gameCheck();
     var output;
+    var win;
     if(check){
       output = newGame.gamePlay();
     }
-    else{
-      return "Winner"
+    else {
+      win = "YOU WIN!"
     }
 
     $("img.headshot").show();
