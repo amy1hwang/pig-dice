@@ -6,17 +6,39 @@ function Player(name){
 
 function Game(player){
   this.pigGame = [];
-  this.dieValue = 1;
+  this.dieValue = 0;
+  this.index = 0;
 };
 
 Game.prototype.roll = function() {
-  return Math.floor(Math.random() * (7 - 1)) + 1;
+  return Math.floor(Math.random() * (7 - 1)) + 2;
 };
 
 Game.prototype.gamePlay = function() {
-  var x = 0;
-  while(this.dieValue > 1 || this.dieValue != "hold"){
-    //do stuff
+
+  if(this.dieValue === 1){
+    this.pigGame[this.index].currentScore = 0;
+    if (this.index === this.pigGame.length - 1) {
+      this.index = 0;
+    }
+    else{
+        this.index += 1;
+    }
+  }
+  else if(this.dieValue === 10){
+    this.pigGame[this.index].totalScore += this.pigGame[this.index].currentScore
+    console.log("this is my total score: " + this.pigGame[this.index].totalScore);
+    this.pigGame[this.index].currentScore = 0;
+    if (this.index === this.pigGame.length - 1) {
+      this.index = 0;
+    }
+    else{
+        this.index += 1;
+    }
+  }
+  else{
+    this.pigGame[this.index].currentScore += this.dieValue;
+    console.log("this is my current score: " + this.pigGame[this.index].currentScore)
   }
 };
 
@@ -28,17 +50,24 @@ $(document).ready(function() {
     var newPlayer = new Player(name);
 
     newGame.pigGame.push(newPlayer);
+    console.log(newGame.pigGame);
+    $("#player-entry").text("");
     $(".show-player-name").append(name + "<br>");
     event.preventDefault();
   });
 
   $("form#game").submit(function(event){
 
-    $("#hold").click(function(){
-      newGame.dieValue = "hold";
-    });
     newGame.dieValue = newGame.roll();
-    $("#display h3").text(newGame.roll());
+    newGame.gamePlay();
+    //console.log(newGame.dieValue)
+    $("#display h3").text(newGame.dieValue);
+    event.preventDefault();
+  });
+
+  $("form#hold").submit(function(event){
+    newGame.dieValue = 10;
+    newGame.gamePlay();
     event.preventDefault();
   });
 })
