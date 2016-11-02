@@ -42,6 +42,22 @@ Game.prototype.gamePlay = function() {
   }
 };
 
+Game.prototype.gameCheck = function(){
+  var flag = true
+  while(flag){
+    for(var i = 0; i < this.pigGame.length; i++){
+      if(this.pigGame[i].totalScore >= 20){
+        flag = false
+        console.log("You win " + this.pigGame[i].name + "!");
+      }
+      else{
+        newGame.gamePlay();
+      }
+    }
+  }
+}
+
+
 var newGame = new Game();
 
 $(document).ready(function() {
@@ -51,7 +67,7 @@ $(document).ready(function() {
 
     newGame.pigGame.push(newPlayer);
     console.log(newGame.pigGame);
-    $("#player-entry").text("");
+    $("#player-entry").val("");
     $(".show-player-name").append(name + "<br>");
     event.preventDefault();
   });
@@ -59,7 +75,7 @@ $(document).ready(function() {
   $("form#game").submit(function(event){
 
     newGame.dieValue = newGame.roll();
-    newGame.gamePlay();
+    newGame.gameCheck(); //while loop function
     //console.log(newGame.dieValue)
     $("#display h3").text(newGame.dieValue);
     event.preventDefault();
@@ -67,7 +83,7 @@ $(document).ready(function() {
 
   $("form#hold").submit(function(event){
     newGame.dieValue = 10;
-    newGame.gamePlay();
+    newGame.gameCheck(); //while loop function
     event.preventDefault();
   });
 })
