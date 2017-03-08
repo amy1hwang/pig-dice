@@ -9,7 +9,7 @@ Game Rules:
 * If the player rolls a 1, they score nothing and it becomes the next player's turn.
 * If the player rolls any other number, it is added to their turn total and the player's turn continues.
 * If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.
-* A play that reaches 25 first wins.
+* A play that reaches 100 first wins.
 
 # program setup instructions
 * Clone this repository.
@@ -18,6 +18,9 @@ Game Rules:
 
 # link to site on GitHub Pages
 https://amy1hwang.github.io/pig-dice
+
+# Known Bug(s)
+After a few turns are exchanged, the numbers do not add up anymore and the output freezes.
 
 # copyright and license information
 Copyright (c) 2016 Amy Hwang. This software is licensed under the Github license.
